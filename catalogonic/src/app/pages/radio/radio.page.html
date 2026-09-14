@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Radio Component</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Selección Única y Estado Deshabilitado -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Selección Única (ion-radio-group)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="opcionSeleccionada">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-radio value="manzana" justify="space-between">Manzana</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="banana" justify="space-between">Banana</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="cereza" justify="space-between">Cereza</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="uvas" [disabled]="true" justify="space-between">Uvas (Deshabilitado)</ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-radio-group>
+
+      <div class="ion-margin-top">
+        <p><strong>Fruta seleccionada:</strong> {{ opcionSeleccionada }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Personalización de Colores -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Variantes de Color (color)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="metodoPago">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-radio value="tarjeta" color="primary" justify="space-between">Tarjeta de Crédito / Débito</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="paypal" color="secondary" justify="space-between">PayPal</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="efectivo" color="success" justify="space-between">Efectivo al Entregar</ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-radio-group>
+
+      <div class="ion-margin-top">
+        <p><strong>Método seleccionado:</strong> {{ metodoPago }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 3. Posicionamiento de Indicador (labelPlacement) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Ubicación del Botón (labelPlacement)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group value="end">
+        <ion-list lines="full">
+          <ion-item>
+            <ion-radio value="start" labelPlacement="start">Indicador al Inicio (start)</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-radio value="end" labelPlacement="end">Indicador al Final (end)</ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-radio-group>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Datetime</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Selección Inline (Calendario Completo) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1. Calendario Inline</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding">
+      <ion-datetime
+        [(ngModel)]="fechaSeleccionada"
+        presentation="date"
+        color="primary">
+      </ion-datetime>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Botón con Popover/Modal Automático -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>2. Datetime Button (Modal)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item lines="none">
+        <ion-label>Fecha de Nacimiento</ion-label>
+        <ion-datetime-button datetime="datetime-modal"></ion-datetime-button>
+      </ion-item>
+
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+            id="datetime-modal"
+            presentation="date"
+            [showDefaultButtons]="true"
+            doneText="Confirmar"
+            cancelText="Cancelar">
+          </ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 3. Seleccionador de Hora -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>3. Selección de Hora</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding">
+      <ion-datetime
+        [(ngModel)]="horaSeleccionada"
+        presentation="time"
+        color="secondary">
+      </ion-datetime>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 4. Control de Estado y Formato -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>4. Valores Seleccionados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text color="dark">
+        <p><strong>Fecha (ISO):</strong> {{ fechaSeleccionada }}</p>
+        <p><strong>Fecha Formateada:</strong> {{ fechaSeleccionada | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Hora Seleccionada:</strong> {{ horaSeleccionada }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

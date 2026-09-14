@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Refresher Component</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Desliza para actualizar"
+      refreshingSpinner="circles"
+      refreshingText="Cargando...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Actualización por Deslizamiento</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Desliza hacia abajo desde la parte superior de la pantalla.</p>
+      <p class="ion-margin-top">
+        <ion-icon name="time-outline"></ion-icon>
+        <strong>Última actualización:</strong> {{ ultimaActualizacion }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list lines="full">
+    @for (item of elementos; track item) {
+      <ion-item>
+        <ion-avatar slot="start">
+          <img alt="Avatar" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ item }}</h2>
+          <p>Información obtenida vía ion-refresher</p>
+        </ion-label>
+      </ion-item>
+    }
+  </ion-list>
+
+</ion-content>
