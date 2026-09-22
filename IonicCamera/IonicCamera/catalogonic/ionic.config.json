@@ -1,7 +1,0 @@
-{
-  "name": "CatalogoIonic",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
