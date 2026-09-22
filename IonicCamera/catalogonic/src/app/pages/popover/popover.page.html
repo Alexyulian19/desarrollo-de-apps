@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Popover Component</ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="popover-button">
+        <ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Popover de Menú de Opciones -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Popover Flotante (Inline Popover)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Haz clic en el icono de los tres puntos (⋮) en la esquina superior derecha de la barra para desplegar el menú emergente.
+      </p>
+      @if (opcionSeleccionada) {
+        <div class="ion-margin-top">
+          <p><strong>Selección:</strong> {{ opcionSeleccionada }}</p>
+        </div>
+      }
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Popover con Posicionamiento -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Posicionamiento (Side & Alignment)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Demostración de Popover posicionado automáticamente debajo de un botón específico mediante <code>trigger</code>, <code>side</code> y <code>alignment</code>.
+      </p>
+      <ion-button id="click-trigger" expand="block" color="secondary" class="ion-margin-top">
+        Abrir Popover Informativo
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 1. Estructura Popover de Menú -->
+  <ion-popover #popoverMenu trigger="popover-button" dismissOnSelect="true">
+    <ng-template>
+      <ion-content class="ion-padding-vertical">
+        <ion-list lines="none">
+          <ion-item button (click)="onOpcionClick('Perfil de Usuario')">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-label>Perfil</ion-label>
+          </ion-item>
+          <ion-item button (click)="onOpcionClick('Configuración General')">
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <ion-label>Ajustes</ion-label>
+          </ion-item>
+          <ion-item button (click)="onOpcionClick('Cerrar Sesión')">
+            <ion-icon slot="start" name="log-out-outline" color="danger"></ion-icon>
+            <ion-label color="danger">Cerrar Sesión</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
+  <!-- 2. Estructura Popover Informativo -->
+  <ion-popover trigger="click-trigger" triggerAction="click" side="bottom" alignment="center">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <div class="ion-text-center">
+          <ion-icon name="help-circle-outline" size="large" color="primary"></ion-icon>
+          <h3>Información Oficial</h3>
+          <p>Este panel es un Popover inline de Ionic 7+ adaptado al elemento activador.</p>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-popover>
+
+</ion-content>

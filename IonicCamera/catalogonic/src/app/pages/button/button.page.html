@@ -1,0 +1,158 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Button & Anchor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Paleta de Colores (Relleno Solid) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1. Paleta de Colores</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <ion-button color="primary">Primary</ion-button>
+        <ion-button color="secondary">Secondary</ion-button>
+        <ion-button color="tertiary">Tertiary</ion-button>
+        <ion-button color="success">Success</ion-button>
+        <ion-button color="warning">Warning</ion-button>
+        <ion-button color="danger">Danger</ion-button>
+        <ion-button color="light">Light</ion-button>
+        <ion-button color="dark">Dark</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Tipos de Relleno (Fill) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>2. Variantes de Relleno (fill)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <ion-button fill="solid" color="primary">Solid (Por defecto)</ion-button>
+        <ion-button fill="outline" color="primary">Outline</ion-button>
+        <ion-button fill="clear" color="primary">Clear</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 3. Tamaños (Size) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>3. Tamaños (size)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <ion-button size="small" color="secondary">Small</ion-button>
+        <ion-button size="default" color="secondary">Default</ion-button>
+        <ion-button size="large" color="secondary">Large</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 4. Formas (Shape: Standard vs Round) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>4. Formas (shape)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <ion-button shape="rectangle" color="tertiary">Normal</ion-button>
+        <ion-button shape="round" color="tertiary">Redondeado (Round)</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 5. Expansión (Expand: Block / Full) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>5. Modos de Expansión (expand)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="success" class="ion-margin-bottom">
+        Expand Block (Con bordes redondeados)
+      </ion-button>
+
+      <ion-button expand="full" color="warning">
+        Expand Full (Sin bordes laterales)
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 6. Botones con Iconos -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>6. Integración con Iconos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+        <ion-button color="primary">
+          <ion-icon slot="start" name="heart"></ion-icon>
+          Favorito
+        </ion-button>
+
+        <ion-button color="secondary">
+          Enviar
+          <ion-icon slot="end" name="paper-plane-outline"></ion-icon>
+        </ion-button>
+
+        <!-- Icon-only -->
+        <ion-button fill="outline" color="danger">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+
+        <ion-button shape="round" color="warning">
+          <ion-icon slot="icon-only" name="star-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 7. Uso como Enlace Anchor (href / target / download) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>7. Comportamiento Anchor (&lt;a&gt;)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Al agregar <code>href</code> o <code>target</code>, el botón renderiza internamente una etiqueta de enlace HTML.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <ion-button href="https://ionicframework.com" target="_blank" fill="outline" color="dark">
+          <ion-icon slot="start" name="open-outline"></ion-icon>
+          Documentación Ionic (Nueva Pestaña)
+        </ion-button>
+
+        <ion-button href="/home" fill="clear" color="primary">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          Enlace Interno a Home
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 8. Estados e Interacción -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>8. Estados e Interacción</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;" class="ion-margin-bottom">
+        <ion-button disabled="true" color="primary">Deshabilitado</ion-button>
+        <ion-button (click)="incrementarClicks()" color="tertiary">
+          Clics: {{ contador }}
+        </ion-button>
+      </div>
+
+      <ion-text color="medium">
+        <p><strong>Último evento:</strong> {{ estadoMensaje }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

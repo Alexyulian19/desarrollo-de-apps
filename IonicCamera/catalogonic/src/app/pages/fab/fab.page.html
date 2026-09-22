@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>FAB (Floating Action Button)</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- FAB Fijo Inferior Derecho (Lista hacia arriba - Top) -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="secondary" (click)="ejecutarAccion('Crear Documento')">
+        <ion-icon name="document-text-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="tertiary" (click)="ejecutarAccion('Subir Imagen')">
+        <ion-icon name="image-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="success" (click)="ejecutarAccion('Tomar Foto')">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <!-- FAB Fijo Inferior Izquierdo (Múltiples Direcciones: Top y End) -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+    <ion-fab-button color="dark">
+      <ion-icon name="share-social"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="danger" (click)="ejecutarAccion('Compartir en Instagram')">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button color="tertiary" (click)="ejecutarAccion('Compartir en Twitter')">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="primary" (click)="ejecutarAccion('Compartir en Facebook')">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <!-- 1. Extended FAB (Botón Extendido con Texto) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1. FAB Extendido (Extended FAB)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">
+        Según la guía de Ionic y Material Design, los FABs pueden incluir texto e icono para acciones principales destacadas.
+      </p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+        <ion-fab-button color="primary" style="width: auto; --border-radius: 16px; padding: 0 16px;" (click)="ejecutarAccion('Nuevo Elemento')">
+          <ion-icon name="add-outline" slot="start"></ion-icon>
+          <ion-label>Crear Nuevo</ion-label>
+        </ion-fab-button>
+
+        <ion-fab-button color="success" style="width: auto; --border-radius: 16px; padding: 0 16px;" (click)="ejecutarAccion('Guardar Cambios')">
+          <ion-icon name="checkmark-done-outline" slot="start"></ion-icon>
+          <ion-label>Guardar</ion-label>
+        </ion-fab-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Variantes de Relleno (Fill) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>2. Variantes de Relleno (Fill)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; text-align: center;">
+        <div>
+          <ion-fab-button color="primary" fill="solid">
+            <ion-icon name="heart"></ion-icon>
+          </ion-fab-button>
+          <small>Solid</small>
+        </div>
+        <div>
+          <ion-fab-button color="primary" fill="outline">
+            <ion-icon name="heart-outline"></ion-icon>
+          </ion-fab-button>
+          <small>Outline</small>
+        </div>
+        <div>
+          <ion-fab-button color="primary" fill="clear">
+            <ion-icon name="heart-dislike-outline"></ion-icon>
+          </ion-fab-button>
+          <small>Clear</small>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 3. Tamaños y Estados -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>3. Tamaños y Estados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap; text-align: center;">
+        <div>
+          <ion-fab-button size="small" color="secondary">
+            <ion-icon name="star"></ion-icon>
+          </ion-fab-button>
+          <small>Small</small>
+        </div>
+        <div>
+          <ion-fab-button color="secondary">
+            <ion-icon name="star"></ion-icon>
+          </ion-fab-button>
+          <small>Default</small>
+        </div>
+        <div>
+          <ion-fab-button [disabled]="true" color="secondary">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </ion-fab-button>
+          <small>Disabled</small>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 4. Registro de Eventos -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>4. Estado de Interacción</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <strong>Última acción pulsada:</strong>
+        <ion-text color="primary"><strong>{{ ultimaAccion || 'Ninguna' }}</strong></ion-text>
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
