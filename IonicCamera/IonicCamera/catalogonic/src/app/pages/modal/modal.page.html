@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Modal Component</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Modal Estándar -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Modal Estándar (Inline Form)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Modal interactivo para captura de datos con confirmación y retorno de información.</p>
+      <ion-button id="open-modal" expand="block" class="ion-margin-top">
+        Abrir Modal Formulario
+      </ion-button>
+
+      @if (mensajeConfirmacion) {
+        <div class="ion-margin-top">
+          <p><strong>Resultado:</strong> {{ mensajeConfirmacion }}</p>
+        </div>
+      }
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Sheet Modal (Bottom Sheet) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Sheet Modal (Bottom Sheet)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Modal inferior deslizable configurado con puntos de interrupción (Breakpoints) según el estándar oficial de Ionic 7+.</p>
+      <ion-button id="open-sheet-modal" expand="block" color="secondary" class="ion-margin-top">
+        Abrir Sheet Modal
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Componente Inline Modal Estándar -->
+  <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelar()">Cancelar</ion-button>
+          </ion-buttons>
+          <ion-title>Formulario Modal</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirmar()" [strong]="true">Guardar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input
+            label="Ingresa tu nombre"
+            labelPlacement="stacked"
+            placeholder="Escribe aquí..."
+            [(ngModel)]="nombreModal">
+          </ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Componente Sheet Modal con Breakpoints (25%, 50%, 75%, 100%) -->
+  <ion-modal trigger="open-sheet-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.25, 0.5, 0.75, 1]" handleBehavior="cycle">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <div class="ion-margin-bottom ion-text-center">
+          <h2>Sheet Modal Oficial</h2>
+          <p>Desliza verticalmente la barra superior para ajustar la altura del panel.</p>
+        </div>
+        <ion-list lines="full">
+          <ion-item button>
+            <ion-label>Opción 1: Configuración</ion-label>
+          </ion-item>
+          <ion-item button>
+            <ion-label>Opción 2: Notificaciones</ion-label>
+          </ion-item>
+          <ion-item button>
+            <ion-label>Opción 3: Privacidad</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Grid System</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Columnas de Ancho Automático e Igualitario -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1. Distribución Automática (Equal Width)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Las columnas sin tamaño explícito dividen el espacio equitativamente (sistema de 12 columnas).</p>
+
+      <ion-grid>
+        <ion-row class="grid-demo-row">
+          <ion-col class="grid-demo-col">1 de 2</ion-col>
+          <ion-col class="grid-demo-col">2 de 2</ion-col>
+        </ion-row>
+        <ion-row class="grid-demo-row ion-margin-top">
+          <ion-col class="grid-demo-col">1 de 3</ion-col>
+          <ion-col class="grid-demo-col">2 de 3</ion-col>
+          <ion-col class="grid-demo-col">3 de 3</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Tamaño de Columna Específico (size) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>2. Tamaños Explícitos (size)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="grid-demo-row">
+          <ion-col size="8" class="grid-demo-col">size="8"</ion-col>
+          <ion-col size="4" class="grid-demo-col">size="4"</ion-col>
+        </ion-row>
+        <ion-row class="grid-demo-row ion-margin-top">
+          <ion-col size="3" class="grid-demo-col">size="3"</ion-col>
+          <ion-col size="6" class="grid-demo-col">size="6"</ion-col>
+          <ion-col size="3" class="grid-demo-col">size="3"</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 3. Breakpoints Responsivos (size-xs, size-sm, size-md, size-lg) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>3. Diseño Responsivo (Breakpoints)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Cambia según la pantalla: 12 columnas en móvil (xs), 6 en tablet (md) y 3 en escritorio (lg).</p>
+
+      <ion-grid>
+        <ion-row class="grid-demo-row">
+          @for (item of [1, 2, 3, 4]; track item) {
+            <ion-col size="12" size-md="6" size-lg="3" class="grid-demo-col">
+              Columna {{ item }}
+            </ion-col>
+          }
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 4. Desplazamiento de Columnas (offset) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>4. Desplazamiento (offset)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="grid-demo-row">
+          <ion-col size="6" offset="3" class="grid-demo-col">size="6" offset="3"</ion-col>
+        </ion-row>
+        <ion-row class="grid-demo-row ion-margin-top">
+          <ion-col size="4" offset="2" class="grid-demo-col">size="4" offset="2"</ion-col>
+          <ion-col size="4" offset="2" class="grid-demo-col">size="4" offset="2"</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 5. Alineación Horizontal y Vertical -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>5. Alineación Flexbox (Justify & Align)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Justificación Horizontal (center, space-between):</p>
+      <ion-grid>
+        <ion-row class="ion-justify-content-center grid-demo-row">
+          <ion-col size="3" class="grid-demo-col">Center 1</ion-col>
+          <ion-col size="3" class="grid-demo-col">Center 2</ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-between grid-demo-row ion-margin-top">
+          <ion-col size="3" class="grid-demo-col">Between 1</ion-col>
+          <ion-col size="3" class="grid-demo-col">Between 2</ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <p class="ion-margin-top ion-margin-bottom">Alineación Vertical (align-items-center):</p>
+      <ion-grid style="height: 120px; background: var(--ion-color-step-100, #222);">
+        <ion-row class="ion-align-items-center" style="height: 100%;">
+          <ion-col class="grid-demo-col">Centrado Verticalmente</ion-col>
+          <ion-col class="grid-demo-col">Centrado Verticalmente</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 6. Grid de Ancho Fijo (fixed="true") -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>6. Grid con Ancho Fijo (fixed)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">La propiedad <code>fixed="true"</code> limita el ancho máximo del contenedor según el breakpoint actual.</p>
+
+      <ion-grid [fixed]="true" style="background: var(--ion-color-step-150, #333); padding: 8px;">
+        <ion-row class="grid-demo-row">
+          <ion-col size="6" class="grid-demo-col">Fixed Col 1</ion-col>
+          <ion-col size="6" class="grid-demo-col">Fixed Col 2</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Action Sheet</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>¿Qué es un Action Sheet?</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        Es un panel desplegable que aparece desde la parte inferior para ofrecer distintas alternativas al usuario (como compartir, eliminar o guardar).
+      </p>
+
+      <ion-button id="open-action-sheet" expand="block" class="ion-margin-top">
+        Desplegar Menú de Opciones
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estado de la Selección</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text color="tertiary">
+        <p><strong>Última acción:</strong> {{ resultado }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-action-sheet
+    trigger="open-action-sheet"
+    header="Opciones de Publicación"
+    subHeader="Selecciona una acción a realizar"
+    [buttons]="actionSheetButtons"
+    (didDismiss)="logResult($event)">
+  </ion-action-sheet>
+</ion-content>

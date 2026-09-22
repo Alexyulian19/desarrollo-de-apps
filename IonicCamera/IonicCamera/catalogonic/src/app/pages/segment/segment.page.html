@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Segment Component</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Segment Básico con Cambio de Contenido -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Segmento Básico (Filtro de Contenido)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-segment [(ngModel)]="segmentoSeleccionado" color="primary">
+        <ion-segment-button value="todos">
+          <ion-label>Todos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="favoritos">
+          <ion-label>Favoritos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="archivados">
+          <ion-label>Archivados</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div class="ion-margin-top">
+        @switch (segmentoSeleccionado) {
+          @case ('todos') {
+            <p>Mostrando <strong>todos</strong> los registros del sistema.</p>
+          }
+          @case ('favoritos') {
+            <p>Mostrando únicamente los elementos guardados como <strong>favoritos</strong>.</p>
+          }
+          @case ('archivados') {
+            <p>Mostrando los elementos <strong>archivados</strong>.</p>
+          }
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Segment Desplazable con Iconos (Scrollable) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Segmento Desplazable (Scrollable)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-segment [(ngModel)]="segmentoIconos" [scrollable]="true" color="secondary">
+        <ion-segment-button value="llamadas">
+          <ion-icon name="call"></ion-icon>
+          <ion-label>Llamadas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="favoritos">
+          <ion-icon name="heart"></ion-icon>
+          <ion-label>Favoritos</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mapas">
+          <ion-icon name="pin"></ion-icon>
+          <ion-label>Ubicación</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="perfil">
+          <ion-icon name="person"></ion-icon>
+          <ion-label>Perfil</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="destacados">
+          <ion-icon name="star"></ion-icon>
+          <ion-label>Destacados</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <div class="ion-margin-top">
+        <p><strong>Sección activa:</strong> {{ segmentoIconos }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

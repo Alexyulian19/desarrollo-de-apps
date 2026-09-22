@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Alert</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Ejemplo 1: Alerta Básica -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1. Alerta Básica</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Despliega un diálogo sencillo de notificación con un botón de cierre.</p>
+
+      <ion-button id="present-alert" expand="block" class="ion-margin-top">
+        Mostrar Alerta Simple
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Ejemplo 2: Alerta de Confirmación -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>2. Alerta de Confirmación</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Permite al usuario confirmar o cancelar una operación.</p>
+
+      <ion-button id="confirm-alert" expand="block" color="warning" class="ion-margin-top">
+        Confirmar Acción
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Estado de la respuesta -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estado de Respuesta</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text color="tertiary">
+        <p><strong>Última interacción:</strong> {{ resultado }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Componentes Emergentes ion-alert -->
+  <ion-alert
+    trigger="present-alert"
+    header="Notificación"
+    subHeader="Mensaje del Sistema"
+    message="Esta es una alerta básica informativa."
+    [buttons]="alertButtons">
+  </ion-alert>
+
+  <ion-alert
+    trigger="confirm-alert"
+    header="Confirmación requerida"
+    message="¿Estás seguro de que deseas guardar los cambios?"
+    [buttons]="confirmButtons"
+    (didDismiss)="logResult($event)">
+  </ion-alert>
+
+</ion-content>

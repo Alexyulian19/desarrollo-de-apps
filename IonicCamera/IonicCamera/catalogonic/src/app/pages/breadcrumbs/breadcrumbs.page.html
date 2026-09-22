@@ -1,0 +1,159 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Breadcrumbs</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 1. Ruta Básica y Variaciones de Color -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>1. Navegación Básica y Paleta de Colores</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-breadcrumbs color="primary" class="ion-margin-bottom">
+        <ion-breadcrumb href="/home">Inicio</ion-breadcrumb>
+        <ion-breadcrumb href="#">Catálogo</ion-breadcrumb>
+        <ion-breadcrumb>Primary</ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <ion-breadcrumbs color="secondary" class="ion-margin-bottom">
+        <ion-breadcrumb href="/home">Inicio</ion-breadcrumb>
+        <ion-breadcrumb href="#">Sección</ion-breadcrumb>
+        <ion-breadcrumb>Secondary</ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <ion-breadcrumbs color="tertiary">
+        <ion-breadcrumb href="/home">Inicio</ion-breadcrumb>
+        <ion-breadcrumb href="#">Ajustes</ion-breadcrumb>
+        <ion-breadcrumb>Tertiary</ion-breadcrumb>
+      </ion-breadcrumbs>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 2. Iconos en Slots y Separadores Personalizados -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>2. Iconos y Separadores Personalizados</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Uso de iconos al inicio/fin y separadores con <code>slot="separator"</code>.</p>
+
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="/home">
+          <ion-icon slot="start" name="home-outline"></ion-icon>
+          Inicio
+          <ion-icon slot="separator" name="chevron-forward-outline"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb href="#">
+          <ion-icon slot="start" name="folder-outline"></ion-icon>
+          Documentos
+          <ion-icon slot="separator" name="chevron-forward-outline"></ion-icon>
+        </ion-breadcrumb>
+        <ion-breadcrumb>
+          <ion-icon slot="start" name="document-text-outline"></ion-icon>
+          Reporte.pdf
+        </ion-breadcrumb>
+      </ion-breadcrumbs>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 3. Colapso de Elementos (maxItems) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>3. Control de Colapso (maxItems)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Configurado con <code>maxItems="3"</code>, <code>itemsBeforeCollapse="1"</code> y <code>itemsAfterCollapse="1"</code>.</p>
+
+      <ion-breadcrumbs [maxItems]="3" [itemsBeforeCollapse]="1" [itemsAfterCollapse]="1">
+        <ion-breadcrumb href="/home">Inicio</ion-breadcrumb>
+        <ion-breadcrumb href="#">Proyectos</ion-breadcrumb>
+        <ion-breadcrumb href="#">2026</ion-breadcrumb>
+        <ion-breadcrumb href="#">Ionic</ion-breadcrumb>
+        <ion-breadcrumb>Componentes</ion-breadcrumb>
+      </ion-breadcrumbs>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 4. Indicador de Colapso Personalizado -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>4. Indicador de Colapso Personalizado</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-breadcrumbs [maxItems]="3">
+        <ion-breadcrumb href="/home">Inicio</ion-breadcrumb>
+        <ion-breadcrumb href="#">Categorías</ion-breadcrumb>
+        <ion-breadcrumb href="#">Ropa</ion-breadcrumb>
+        <ion-breadcrumb href="#">Calzado</ion-breadcrumb>
+        <ion-breadcrumb>Zapatillas</ion-breadcrumb>
+
+        <ion-icon slot="collapsed-indicator" name="ellipsis-horizontal-circle-outline" color="tertiary"></ion-icon>
+      </ion-breadcrumbs>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 5. Menú Desplegable en Elementos Colapsados (Popover) -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>5. Colapso con Popover Desplegable</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p class="ion-margin-bottom">Haz clic en el indicador colapsado para desplegar las rutas ocultas.</p>
+
+      <ion-breadcrumbs
+        [maxItems]="4"
+        (ionCollapsedClick)="presentPopover($event)">
+        <ion-breadcrumb href="/home">Inicio</ion-breadcrumb>
+        <ion-breadcrumb href="#">Panel</ion-breadcrumb>
+        <ion-breadcrumb href="#">Usuarios</ion-breadcrumb>
+        <ion-breadcrumb href="#">Administradores</ion-breadcrumb>
+        <ion-breadcrumb href="#">Permisos</ion-breadcrumb>
+        <ion-breadcrumb>Editar</ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <ion-popover [isOpen]="isPopoverOpen" [event]="popoverEvent" (didDismiss)="isPopoverOpen = false">
+        <ng-template>
+          <ion-list lines="full">
+            <ion-item button href="#">
+              <ion-icon slot="start" name="layers-outline"></ion-icon>
+              <ion-label>Panel</ion-label>
+            </ion-item>
+            <ion-item button href="#">
+              <ion-icon slot="start" name="person-outline"></ion-icon>
+              <ion-label>Usuarios</ion-label>
+            </ion-item>
+            <ion-item button href="#">
+              <ion-icon slot="start" name="settings-outline"></ion-icon>
+              <ion-label>Administradores</ion-label>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-popover>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- 6. Evento de Interacción y Estado Activo -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>6. Captura de Evento de Selección</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-breadcrumbs (ionChange)="onBreadcrumbClick($event)">
+        <ion-breadcrumb value="Inicio">Inicio</ion-breadcrumb>
+        <ion-breadcrumb value="Configuración">Configuración</ion-breadcrumb>
+        <ion-breadcrumb value="Seguridad">Seguridad</ion-breadcrumb>
+      </ion-breadcrumbs>
+
+      <ion-text color="primary" class="ion-margin-top" style="display: block;">
+        <p><strong>Breadcrumb seleccionado:</strong> {{ seleccionado }}</p>
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
