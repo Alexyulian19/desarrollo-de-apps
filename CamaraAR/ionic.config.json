@@ -1,0 +1,5 @@
+{
+  "name": "camara_ar",
+  "integrations": { "capacitor": {} },
+  "type": "angular-standalone"
+}

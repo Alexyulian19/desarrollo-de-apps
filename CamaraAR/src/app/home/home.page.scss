@@ -1,0 +1,150 @@
+.ar-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--ar-negro);
+  color: var(--ar-blanco);
+}
+
+.input-video { display: none; }
+
+.output-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Efecto espejo solo con la cámara frontal (como un selfie) */
+.output-canvas.espejo { transform: scaleX(-1); }
+
+/* ---------- Barra superior ---------- */
+.barra {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 16px) 20px 16px;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent);
+  pointer-events: none;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.logo {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ar-rojo);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+}
+
+.estado {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--ar-texto-suave);
+  background: var(--ar-vidrio);
+  border: 1px solid var(--ar-borde);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: color 0.2s;
+}
+
+.estado .punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transition: background 0.2s;
+}
+
+.estado.activo { color: var(--ar-blanco); }
+.estado.activo .punto { background: var(--ar-verde); }
+
+/* ---------- Carga / error ---------- */
+.aviso {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  text-align: center;
+
+  ion-spinner { --color: var(--ar-blanco); margin-bottom: 12px; }
+}
+
+.aviso-titulo { margin: 0; font-size: 18px; font-weight: 600; }
+.aviso-texto { margin: 0; max-width: 32ch; font-size: 14px; line-height: 1.5; color: var(--ar-texto-suave); }
+
+.boton-principal {
+  margin-top: 16px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ar-negro);
+  background: var(--ar-blanco);
+  cursor: pointer;
+}
+
+/* ---------- Controles inferiores ---------- */
+.controles {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--ar-vidrio);
+  border: 1px solid var(--ar-borde);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ar-blanco);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  ion-icon { font-size: 18px; }
+  &:disabled { opacity: 0.4; }
+  &.encendido { background: var(--ar-blanco); color: var(--ar-negro); }
+}
+
+button:focus-visible { outline: 2px solid var(--ar-blanco); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

@@ -1,0 +1,50 @@
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <div class="ar-container">
+    <!-- Fuente de datos (oculto) y hoja de dibujo (lo que ve el usuario) -->
+    <video #videoElement class="input-video" playsinline muted></video>
+    <canvas #canvasElement class="output-canvas" [class.espejo]="facingMode === 'user'"></canvas>
+
+    <!-- Barra superior -->
+    <header class="barra">
+      <span class="marca">
+        <span class="logo" aria-hidden="true"></span>
+        Cámara AR
+      </span>
+      @if (estado === 'listo') {
+        <span class="estado" [class.activo]="manos > 0" aria-live="polite">
+          <span class="punto"></span>{{ textoEstado }}
+        </span>
+      }
+    </header>
+
+    <!-- Pantalla de carga / error -->
+    @if (estado !== 'listo') {
+      <section class="aviso">
+        @if (estado === 'cargando') {
+          <ion-spinner name="crescent"></ion-spinner>
+          <p class="aviso-titulo">{{ mensajeCarga }}</p>
+          <p class="aviso-texto">Acepta el permiso de la cámara cuando el navegador lo pida.</p>
+        } @else {
+          <p class="aviso-titulo">No se pudo abrir la cámara</p>
+          <p class="aviso-texto">{{ mensajeError }}</p>
+          <button class="boton-principal" (click)="reintentar()">Intentar de nuevo</button>
+        }
+      </section>
+    }
+
+    <!-- Controles -->
+    @if (estado === 'listo') {
+      <nav class="controles" aria-label="Controles de la cámara">
+        <button class="control" [class.encendido]="mostrarEsqueleto" (click)="alternarEsqueleto()"
+                [attr.aria-pressed]="mostrarEsqueleto">
+          <ion-icon name="git-network-outline" aria-hidden="true"></ion-icon>
+          <span>Esqueleto</span>
+        </button>
+        <button class="control" (click)="cambiarCamara()" [disabled]="cambiando">
+          <ion-icon name="camera-reverse-outline" aria-hidden="true"></ion-icon>
+          <span>{{ facingMode === 'user' ? 'Trasera' : 'Frontal' }}</span>
+        </button>
+      </nav>
+    }
+  </div>
+</ion-content>
